@@ -24,15 +24,15 @@ const calculatedCost = document.getElementById("calculated-cost");
 // Note 2: Checking for the nullablity of `calculatedCost` here does not tell the 
 //         type-checker that it will not be null in `updateCalculatedCost()`
 if (!dayButtons.length || !fullButton || !halfButton || !clearButton)
-    throw new Error("Required Elements in Booking page does not exist")
+    throw new Error("Required Elements in Booking page does not exist");
 
 
 /********* colour change days of week *********/
 // when the day buttons are clicked, we will apply the "clicked" class to that element, and update any other relevant variables. Then, we can recalculate the total cost.
 // added challenge: don't update the dayCounter if the same day is clicked more than once. hint: .classList.contains() might be helpful here!
 
-dayButtons.forEach((element) => {
-    element.addEventListener("click", () => {
+dayButtons.forEach(function(element) {
+    element.addEventListener("click", function() {
         if (!element.classList.contains("clicked")) {
             element.classList.add("clicked");
             numberOfDaysSelected += 1;
@@ -45,12 +45,12 @@ dayButtons.forEach((element) => {
 /********* clear days *********/
 // when the clear-button is clicked, the "clicked" class is removed from all days, any other relevant variables are reset, and the calculated cost is set to 0.
 
-clearButton.addEventListener("click", () => {
+clearButton.addEventListener("click", function() {
     // Avoid unnecessary work ... check whether it's necessary first.
     if (numberOfDaysSelected == 0)
         return;
 
-    dayButtons.forEach((element) => {
+    dayButtons.forEach(function(element) {
         element.classList.remove("clicked");
         numberOfDaysSelected = 0;
         updateCalculatedCost();
@@ -61,7 +61,7 @@ clearButton.addEventListener("click", () => {
 /********* change rate *********/
 // when the half-day button is clicked, set the daily rate to $20, add the "clicked" class to the "half" element, remove it from the "full" element, and recalculate the total cost.
 
-halfButton.addEventListener("click", () => {
+halfButton.addEventListener("click", function() {
     costPerDay = 20;
     halfButton.classList.add("clicked");
     fullButton.classList.remove("clicked");
@@ -71,7 +71,7 @@ halfButton.addEventListener("click", () => {
 
 // when the full-day button is clicked, the daily rate is set back to $35, the clicked class is added to "full" and removed from "half", and the total cost is recalculated.
 
-fullButton.addEventListener("click", () => {
+fullButton.addEventListener("click", function() {
     costPerDay = 35;
     fullButton.classList.add("clicked");
     halfButton.classList.remove("clicked");
@@ -86,7 +86,7 @@ function updateCalculatedCost() {
     // Check whether `calculatedCost` is nullish here.
     // As checking outside the scope of this function does not satisfy the type-checker.
     if (!calculatedCost)
-        throw new Error("Expected calculated-cost Element does not exist")
+        throw new Error("Expected calculated-cost Element does not exist");
 
     const newCost = costPerDay * numberOfDaysSelected;
     /** Convert newCost to string with no decimal places (i.e. integer). */

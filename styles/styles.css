@@ -13,11 +13,6 @@ You are discouraged from changing any provided CSS.
 
 */
 
-:root {
-    --mustard-yellow: #E5AF42;
-    --cornflower-blue: #4278e5;
-}
-
 /************* site defaults *************/
 body {
     width: 950px;
@@ -66,7 +61,7 @@ h2 {
 }
 
 .fake-button {
-    background-color: var(--mustard-yellow);
+    background-color: #E5AF42;
     /** Since .fake-button only contains text, `text-align: center` 
         would be best suited for it. */
     text-align: center;
@@ -87,7 +82,7 @@ footer a:hover {
 .fake-button:hover,
 .blue-hover:hover {
     text-decoration: underline;
-    background-color: var(--cornflower-blue);
+    background-color: #4278e5;
     color: white;
     cursor: pointer;
 }
@@ -104,7 +99,7 @@ footer a:hover {
 
 header,
 footer {
-    background-color: var(--mustard-yellow);
+    background-color: #E5AF42;
 }
 
 header {
@@ -229,7 +224,7 @@ footer {
 }
 
 .booking-page .clicked {
-    background-color: var(--mustard-yellow);
+    background-color: #E5AF42;
 }
 
 /************* contact page *************/

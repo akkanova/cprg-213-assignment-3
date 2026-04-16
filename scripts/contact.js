@@ -13,7 +13,7 @@ const contactPage = document.getElementById("contact-page");
 if (!submitButton || !contactPage)
     throw new Error("Required Elements in the Contact page does not exist");
 
-submitButton.addEventListener("click", () => {
+submitButton.addEventListener("click", function() {
     // Clear the content of content-page
     contactPage.innerHTML = "";
     
