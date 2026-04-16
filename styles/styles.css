@@ -1,4 +1,4 @@
-/************* your name: 
+/************* your name: Alfred Fantone
 
 INSTRUCTIONS:
 Comments starting with TO-DO have been included in this file to describe the needed styling: please translate these to the appropriate CSS declarations. 
@@ -13,6 +13,10 @@ You are discouraged from changing any provided CSS.
 
 */
 
+:root {
+    --mustard-yellow: #E5AF42;
+    --cornflower-blue: #4278e5;
+}
 
 /************* site defaults *************/
 body {
@@ -24,8 +28,9 @@ body {
 
 /* TO DO: all elements with the .flex class applied are to be made into flex-box containers. */
 
-
- 
+.flex {
+    display: flex;
+}
 
 /************* site-wide text styling *************/
 
@@ -42,12 +47,50 @@ body {
         - change the cursor to pointer.
 */
 
+h1 {
+    font-size: 48px;
+    /** `h1` is always inside of a `<a class="flex">` (flex-direction: row),
+    so we can use `align-self: center` to center it vertically */
+    align-self: center;
+    /** Center horizontally */
+    margin: 0px auto;
+}
 
+h2 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
 
+.large-text {
+    font-size: 24px;
+}
 
+.fake-button {
+    background-color: var(--mustard-yellow);
+    /** Since .fake-button only contains text, `text-align: center` 
+        would be best suited for it. */
+    text-align: center;
+    line-height: 3;
+    border: 1px solid black;
+}
 
+a {
+    text-decoration: none;
+    color: black;
+}
 
+main a:hover, 
+footer a:hover {
+    text-decoration: underline;
+}
 
+.fake-button:hover,
+.blue-hover:hover {
+    text-decoration: underline;
+    background-color: var(--cornflower-blue);
+    color: white;
+    cursor: pointer;
+}
 
 /************* header/footer styling *************/
 
@@ -59,10 +102,39 @@ body {
     - the footer will be 60px tall, have a font-weight of 200, and the text within will be centered vertically and horizontally.
 */
 
+header,
+footer {
+    background-color: var(--mustard-yellow);
+}
 
+header {
+    box-sizing: border-box;
+    height: 150px;
+    margin-bottom: 25px;
+}
 
+header img {
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    margin: 25px 0px 25px 25px;
+}
 
-
+footer {
+    margin-top: 50px;
+    height: 60px;
+    font-weight: 200;
+    /** Center vertically and horizontally using flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /** There's no instructions to add padding to the footer, 
+        but in the spirit of making it closer to the screenshots,
+        I'm going to do so. */
+    padding: 25px 0px;
+    box-sizing: content-box;
+}
 
 /************* index page *************/
 
@@ -74,10 +146,32 @@ body {
     - the pair of fake-buttons will be centered on the page. HINT: can calculate the required margin to make them appear to be centered.
 */
 
+.index img {
+    box-sizing: border-box;
+    width: 300px;
+    margin: 0px 0px 50px 25px;
+}
 
+.index h2 {
+    line-height: 36px;
+}
 
+.index p {
+    margin-bottom: 12px;
+}
 
+.index .fake-button {
+    box-sizing: border-box;
+    width: 250px;
+}
 
+/* According to the Rubric, modifying the HTML by "... adding classes or IDs 
+   to existing elements" is fine. So I created `.fake-button-group` to 
+   select the second `<div class="flex">` of `.index`. */
+.index .fake-button-group {
+    gap: 150px;
+    justify-content: center;
+}
 
 /************* bookings page *************/
 
@@ -93,17 +187,50 @@ body {
 
 */
 
+.booking-page {
+    box-sizing: border-box;
+    width: 600px;
+    /** Center the `.booking-page` horizontally relative to it's parent */
+    margin: 0 auto;
+    /** Center the content of `.booking-page` horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    text-align: center;
+}
 
+.booking-page .day-selector {
+    margin-bottom: 12px;
+    gap: 20px;
+}
 
+.booking-page li {
+    box-sizing: border-box;
+    width: 60px;
+}
 
+.booking-page li,
+.booking-page .small-button {
+    border: 1px solid black;
+}
 
+.booking-page .small-button {
+    padding: 5px;
+}
 
+.booking-page .top-margin {
+    margin: 24px 0px 12px;
+}
 
+.booking-page #clear-button {
+    box-sizing: border-box;
+    width: 200px;
+}
 
-
-
-
-
+.booking-page .clicked {
+    background-color: var(--mustard-yellow);
+}
 
 /************* contact page *************/
 /* TO DO:
@@ -114,6 +241,62 @@ body {
     - the edges of the button will line up exactly with the text-area element. HINT: time for some math!
 */
 
+.contact {
+    box-sizing: border-box;
+    height: 420px;
+    /** Center the `.contact` horizontally relative to it's parent */
+    margin: 0 auto;
+    /** Center the content of `.booking-page` horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+/** The 2-column form grouping (labels + inputs). */
+.contact .flex {
+    gap: 24px;
+}
 
+/** .label-column is a custom class I created to avoid the awkward
+    `.contact .flex > :first-child` selector. It refers to the 
+    left column of the 2-column form group. */
+.contact .label-column {
+    box-sizing: border-box;
+    flex: 0 0 150px;
+}
 
+/** Another custom class. It refers to the right column of the 2-column
+    form group. */
+.contact .input-column {
+    box-sizing: border-box;
+    flex: 0 0 300px;
+}
+
+.contact label {
+    text-align: right;
+}
+
+.contact textarea {
+    /** `box-sizing: border-box` is already set by .input-column */
+    height: 150px;
+}
+
+.contact input,
+.contact textarea,
+.contact button {
+    font-family: inherit;
+    line-height: 24px;
+    font-size: 16px;
+    border: 1px solid black;
+    margin-bottom: 24px;
+}
+
+.contact button {
+    /** There's no instruction for this, but I override the line-height 
+        set by the declaration above to be more accurate to the screenshots. */
+    line-height: 3;
+    box-sizing: border-box;
+    width: 300px;
+    /** margin-left = (label column width) + (2-column gap) */
+    margin-left: calc(150px + 24px);
+}
